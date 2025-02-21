@@ -8,7 +8,14 @@ dotenv.config({
 
 
 connectDB()
-
+.then(() => {
+  app.listen(process.env.PORT || 8000, () => {
+    console.log(`Server is running at port: ${process.env.PORT}`)
+  })
+})
+.catch((err) => {
+  console.log("MONGODB connection FAILED !!!", err)
+})
 
 
 
@@ -23,9 +30,11 @@ connectDB()
 
 // (async () => {
 //   try {
-//     mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+//     const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
+// console.log(`\nMONGODB connected !! DB HOST: ${connectionInstance.connection.host}`)
 //   } catch (error) {
-//     console.error("ERROR: ", error)
+// console.log("MONGODB connection FAILED ", error)
+// process.exit(1)
 //     throw err
 //   }
 // })()
