@@ -16,7 +16,7 @@ export const verifyJWT = async_handler(async (req, _, next) => {
 
     await User.findById(decodedToken?._id).select("-password -refreshToken")
 
-    if (!user) {
+    if (!User) {
       throw new ApiError(401, "Unauthorized")
     }
 
