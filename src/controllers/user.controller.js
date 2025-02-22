@@ -175,7 +175,7 @@ const refreshAccessToken = async_handler(async (req, res) => {
       throw new ApiError(400, "Invalid Refresh Token")
     }
 
-    if (incomingRefreshToken !== user?.refreshToken) {
+    if (!incomingRefreshToken !== user?.refreshToken) {
       throw new ApiError(400, "Invalid Refresh Token")
     }
 
